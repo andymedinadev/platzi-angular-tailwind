@@ -1,27 +1,76 @@
 <app-navbar></app-navbar>
 <div class="container mx-auto mt-10 flex">
   <div class="mr-4 w-1/5">
-    <ul class="flex flex-col font-medium text-gray-700">
+    <ul class="mb-10 flex flex-col font-medium text-gray-700">
       <li>
         <a class="block rounded bg-sky-100 py-1 px-3 text-sky-700">
-          <fa-icon [icon]="faTrello"></fa-icon> Boards
+          <fa-icon [icon]="icons.trello"></fa-icon> Boards
         </a>
       </li>
       <li>
         <a class="block py-1 px-3">
-          <fa-icon [icon]="faBox"></fa-icon> Templates
+          <fa-icon [icon]="icons.box"></fa-icon> Templates
         </a>
       </li>
       <li>
         <a class="block py-1 px-3">
-          <fa-icon [icon]="faWaveSquare"></fa-icon> Home
+          <fa-icon [icon]="icons.waveSquare"></fa-icon> Home
         </a>
       </li>
     </ul>
+
+    <cdk-accordion>
+      <cdk-accordion-item #accordionMenu="cdkAccordionItem">
+        <button
+          class="flex w-full items-center justify-between py-1 px-2"
+          type="button"
+          (click)="accordionMenu.toggle()"
+        >
+          My Workspace
+          <fa-icon
+            [icon]="accordionMenu.expanded ? icons.angleUp : icons.angleDown"
+          ></fa-icon>
+        </button>
+        <div
+          [ngClass]="{
+            hidden: !accordionMenu.expanded,
+            block: accordionMenu.expanded,
+          }"
+        >
+          <ul class="ml-2 flex flex-col text-sm text-gray-700">
+            <li>
+              <a class="block py-1 px-3"
+                ><fa-icon [icon]="icons.trello"></fa-icon> Boards</a
+              >
+            </li>
+            <li>
+              <a class="block py-1 px-3"
+                ><fa-icon [icon]="icons.heart"></fa-icon> Highlights</a
+              >
+            </li>
+            <li>
+              <a class="block py-1 px-3"
+                ><fa-icon [icon]="icons.borderAll"></fa-icon> Views</a
+              >
+            </li>
+            <li>
+              <a class="block py-1 px-3"
+                ><fa-icon [icon]="icons.users"></fa-icon> Members</a
+              >
+            </li>
+            <li>
+              <a class="block py-1 px-3"
+                ><fa-icon [icon]="icons.gear"></fa-icon> Settings</a
+              >
+            </li>
+          </ul>
+        </div>
+      </cdk-accordion-item>
+    </cdk-accordion>
   </div>
   <div class="w-full">
     <h1 class="mb-4 text-lg font-bold">
-      <fa-icon [icon]="faClock"></fa-icon> Recently viewed
+      <fa-icon [icon]="icons.clock"></fa-icon> Recently viewed
     </h1>
     <div class="grid grid-cols-4 gap-4">
       <div
