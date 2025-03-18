@@ -24,7 +24,15 @@
       </div>
     </div>
     <div class="flex items-center">
-      <button type="button" class="flex rounded-full" type="button">
+      <button
+        type="button"
+        class="flex rounded-full"
+        aria-expanded="false"
+        type="button"
+        (click)="isOpen = !isOpen"
+        cdkOverlayOrigin
+        #menuOverlay="cdkOverlayOrigin"
+      >
         <img
           class="h-8 w-8 rounded-full"
           src="https://api.lorem.space/image/face?w=400&h=400"
@@ -34,3 +42,72 @@
     </div>
   </div>
 </nav>
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="menuOverlay"
+  [cdkConnectedOverlayOpen]="isOpen"
+>
+  <div
+    class="z-50 my-4 w-60 list-none divide-y divide-gray-100 rounded bg-white text-base shadow"
+  >
+    <div class="flex justify-between py-3 px-4">
+      <span class="block text-center text-sm text-gray-900">Account</span>
+      <button (click)="isOpen = !isOpen" class="block text-sm text-gray-900">
+        x
+      </button>
+    </div>
+    <div class="flex items-center space-x-4 py-3 px-4">
+      <img
+        class="h-10 w-10 rounded-full"
+        src="https://api.lorem.space/image/face?w=400&h=400"
+        alt=""
+      />
+      <div class="space-y-1">
+        <div>Jese Leos</div>
+        <div class="text-sm text-gray-500">user-gmail.com</div>
+      </div>
+    </div>
+    <ul class="py-1">
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+          >Profile</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+          >Activity</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+          >Cards</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+          >Settings</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+          >Sign out</a
+        >
+      </li>
+    </ul>
+    <ul class="py-1">
+      <li>
+        <a href="#" class="block py-2 px-4 text-sm text-gray-700">Log out</a>
+      </li>
+    </ul>
+  </div>
+</ng-template>
