@@ -22,7 +22,7 @@
     <cdk-accordion>
       <cdk-accordion-item #accordionMenu="cdkAccordionItem">
         <button
-          class="flex w-full items-center justify-between py-1 px-2"
+          class="flex w-full items-center justify-between py-1 px-2 pb-4"
           type="button"
           (click)="accordionMenu.toggle()"
         >
@@ -37,33 +37,40 @@
             block: accordionMenu.expanded,
           }"
         >
-          <ul class="ml-2 flex flex-col text-sm text-gray-700">
-            <li>
-              <a class="block py-1 px-3"
-                ><fa-icon [icon]="icons.trello"></fa-icon> Boards</a
+          <cdk-accordion>
+            <cdk-accordion-item
+              #accordionMenu="cdkAccordionItem"
+              *ngFor="let accordion of accordions"
+            >
+              <button
+                class="flex w-full items-center justify-between py-1 px-2"
+                type="button"
+                (click)="accordionMenu.toggle()"
               >
-            </li>
-            <li>
-              <a class="block py-1 px-3"
-                ><fa-icon [icon]="icons.heart"></fa-icon> Highlights</a
+                <span class="flex items-center gap-2">
+                  <fa-icon [icon]="accordion.icon"></fa-icon>
+                  {{ accordion.label }}
+                </span>
+                <fa-icon
+                  [icon]="
+                    accordionMenu.expanded ? icons.angleUp : icons.angleDown
+                  "
+                ></fa-icon>
+              </button>
+              <div
+                [ngClass]="{
+                  hidden: !accordionMenu.expanded,
+                  block: accordionMenu.expanded,
+                }"
               >
-            </li>
-            <li>
-              <a class="block py-1 px-3"
-                ><fa-icon [icon]="icons.borderAll"></fa-icon> Views</a
-              >
-            </li>
-            <li>
-              <a class="block py-1 px-3"
-                ><fa-icon [icon]="icons.users"></fa-icon> Members</a
-              >
-            </li>
-            <li>
-              <a class="block py-1 px-3"
-                ><fa-icon [icon]="icons.gear"></fa-icon> Settings</a
-              >
-            </li>
-          </ul>
+                <ul class="ml-2 flex flex-col text-sm text-gray-700">
+                  <li *ngFor="let subItem of accordion.items">
+                    <a class="block py-1 px-3">{{ subItem.label }}</a>
+                  </li>
+                </ul>
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
         </div>
       </cdk-accordion-item>
     </cdk-accordion>
