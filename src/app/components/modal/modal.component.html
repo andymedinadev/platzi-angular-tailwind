@@ -1,0 +1,52 @@
+<div class="relative rounded bg-gray-100 p-6 shadow">
+  <button
+    (click)="close()"
+    type="button"
+    class="absolute top-3 right-3 p-2 focus:outline-none"
+  >
+    <fa-icon [icon]="icons.close"></fa-icon>
+  </button>
+  <div class="mb-5 flex space-x-2">
+    <fa-icon class="text-gray-800" [icon]="icons.checkSlot"></fa-icon>
+    <div class="flex flex-col">
+      <h3 class="text-lg font-semibold text-gray-800">{{ todo.title }}</h3>
+      <p class="text-sm text-gray-500">in list ToDo</p>
+    </div>
+  </div>
+  <div class="flex w-full gap-4">
+    <div class="mb-5 flex w-4/6 space-x-2">
+      <fa-icon class="text-gray-800" [icon]="icons.bars"></fa-icon>
+      <div class="flex flex-col">
+        <h3 class="text-lg font-semibold text-gray-800">Description</h3>
+        <p class="text-sm text-gray-500">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis,
+          hic? Adipisci soluta cum odio, beatae ratione magni nobis, optio
+          similique rerum minus excepturi sed vel, id voluptatibus repellendus
+          numquam quod.
+        </p>
+        <!-- <div class="flex space-x-2">
+          <button type="button" (click)="closeWithRta(true)">Sí</button>
+          <button type="button" (click)="closeWithRta(false)">No</button>
+        </div> -->
+      </div>
+    </div>
+    <div class="flex flex-auto flex-col space-y-2">
+      <app-btn typeBtn="button" color="gray-light">
+        <fa-icon class="text-gray-800" [icon]="icons.user"></fa-icon>
+        Members
+      </app-btn>
+      <app-btn typeBtn="button" color="gray-light">
+        <fa-icon class="text-gray-800" [icon]="icons.tag"></fa-icon>
+        Labels
+      </app-btn>
+      <app-btn typeBtn="button" color="gray-light">
+        <fa-icon class="text-gray-800" [icon]="icons.check"></fa-icon>
+        Checklist
+      </app-btn>
+      <app-btn typeBtn="button" color="gray-light">
+        <fa-icon class="text-gray-800" [icon]="icons.clock"></fa-icon>
+        Dates
+      </app-btn>
+    </div>
+  </div>
+</div>

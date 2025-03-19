@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
+import { Dialog } from '@angular/cdk/dialog';
 import {
   DragDropModule,
   CdkDragDrop,
@@ -8,6 +9,7 @@ import {
 } from '@angular/cdk/drag-drop';
 
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { ModalComponent } from '../../components/modal/modal.component';
 import { Column, ToDo } from '../../models/todo.model';
 
 @Component({
@@ -28,6 +30,22 @@ import { Column, ToDo } from '../../models/todo.model';
   ],
 })
 export class SingleBoardComponent {
+  constructor(private dialog: Dialog) {}
+
+  openModal(todo: ToDo) {
+    this.dialog.open(ModalComponent, {
+      minWidth: '300px',
+      maxWidth: '50%',
+      data: {
+        todo: todo,
+      },
+    });
+
+    // dialogRef.closed.subscribe((output) => {
+    //   console.log(output);
+    // });
+  }
+
   columns: Column[] = [
     {
       title: 'To Do',
