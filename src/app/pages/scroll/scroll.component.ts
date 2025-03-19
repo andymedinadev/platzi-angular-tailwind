@@ -6,13 +6,7 @@ import {
   ScrollingModule,
 } from '@angular/cdk/scrolling';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-
-interface Product {
-  id: string;
-  title: string;
-  price: string | number;
-  images: string[];
-}
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-scroll',
