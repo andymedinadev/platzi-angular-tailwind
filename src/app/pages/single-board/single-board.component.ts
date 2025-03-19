@@ -4,10 +4,11 @@ import {
   DragDropModule,
   CdkDragDrop,
   transferArrayItem,
+  moveItemInArray,
 } from '@angular/cdk/drag-drop';
 
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { ToDo } from '../../models/todo.model';
+import { Column, ToDo } from '../../models/todo.model';
 
 @Component({
   selector: 'app-board',
@@ -27,21 +28,30 @@ import { ToDo } from '../../models/todo.model';
   ],
 })
 export class SingleBoardComponent {
-  todos: ToDo[] = [
-    { id: '1', title: 'Wash the dishes' },
-    { id: '2', title: 'Grocery shopping' },
-    { id: '3', title: 'Clean the living room' },
-  ];
-
-  doing: ToDo[] = [
-    { id: '4', title: 'Exercise for 30 minutes' },
-    { id: '5', title: 'Prepare presentation for meeting' },
-  ];
-
-  done: ToDo[] = [
-    { id: '6', title: 'Read a book' },
-    { id: '7', title: 'Submit assignment' },
-    { id: '8', title: 'Call mom' },
+  columns: Column[] = [
+    {
+      title: 'To Do',
+      todos: [
+        { id: '1', title: 'Wash the dishes' },
+        { id: '2', title: 'Grocery shopping' },
+        { id: '3', title: 'Clean the living room' },
+      ],
+    },
+    {
+      title: 'Doing',
+      todos: [
+        { id: '4', title: 'Exercise for 30 minutes' },
+        { id: '5', title: 'Prepare presentation for meeting' },
+      ],
+    },
+    {
+      title: 'Done',
+      todos: [
+        { id: '6', title: 'Read a book' },
+        { id: '7', title: 'Submit assignment' },
+        { id: '8', title: 'Call mom' },
+      ],
+    },
   ];
 
   drop(event: CdkDragDrop<ToDo[]>) {
@@ -51,5 +61,9 @@ export class SingleBoardComponent {
       event.previousIndex,
       event.currentIndex,
     );
+  }
+
+  dropHorizontal(event: CdkDragDrop<Column[]>) {
+    moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
   }
 }
