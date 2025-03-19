@@ -1,9 +1,10 @@
 import { DataSource } from '@angular/cdk/collections';
-import { Product } from '../../models/product.model';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Product } from '../../models/product.model';
 
 export class DataSourceProduct extends DataSource<Product> {
   private dataSubject = new BehaviorSubject<Product[]>([]);
+  private originalData: Product[] = [];
 
   disconnect() {}
 
@@ -12,6 +13,7 @@ export class DataSourceProduct extends DataSource<Product> {
   }
 
   init(products: Product[]) {
+    this.originalData = products;
     this.dataSubject.next(products);
   }
 
@@ -30,5 +32,14 @@ export class DataSourceProduct extends DataSource<Product> {
       products[productIndex] = updatedProduct;
       this.dataSubject.next([...products]);
     }
+  }
+
+  find(query: string): void {
+    const lowerCaseQuery = query.trim().toLowerCase();
+    const filteredProducts = this.originalData.filter((item) =>
+      item.title.toLowerCase().includes(lowerCaseQuery),
+    );
+
+    this.dataSubject.next(filteredProducts);
   }
 }
