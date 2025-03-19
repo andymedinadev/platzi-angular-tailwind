@@ -52,6 +52,7 @@
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="menuOverlay"
   [cdkConnectedOverlayOpen]="isOpen"
+  (overlayOutsideClick)="isOpen = false"
 >
   <div
     class="z-50 my-4 w-60 list-none divide-y divide-gray-100 rounded bg-white text-base shadow"
